@@ -1,6 +1,7 @@
 package utilities;
 
 import java.util.Comparator;
+import products.Product;
 
 /**
  * @author Ahmed Yassine Messaoudi 
@@ -36,11 +37,10 @@ public class BasicSorts {
      * Sorts the array in descending order using bubble sort and the natural
      * ordering of the elements {@code compareTo()}.
      * 
-     * @param <T> the type of the elements, it must implement {@code Comparable}
      * @param arr the array to sort, it is rearranged in place
      */
 
-    public static <T extends Comparable<? super T>> void bubbleSort(T[] arr) {
+    public static void bubbleSort(Product[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             boolean swapped = false;
             for (int j = 0; j < arr.length - 1 - i; j++) {
@@ -59,12 +59,11 @@ public class BasicSorts {
      * Sorts the array in descending order using bubble sort and the given
      * comparator {@code compare()}.
      * 
-     * @param <T> the type of the elements
      * @param arr the array to sort, it is rearranged in place
      * @param comp the comparator that defines the ordering of the elements
      */
 
-    public static <T> void bubbleSort(T[] arr, Comparator<? super T> comp) {
+    public static void bubbleSort(Product[] arr, Comparator<Product> comp) {
         for (int i = 0; i < arr.length - 1; i++) {
             boolean swapped = false;
             for (int j = 0; j < arr.length - 1 - i; j++) {
@@ -83,11 +82,10 @@ public class BasicSorts {
      * Sorts the array in descending order using selection sort and the natural
      * ordering of the elements {@code compareTo()}.
      * 
-     * @param <T> the type of the elements, it must implement {@code Comparable}
      * @param arr the array to sort, it is rearranged in place
      */
 
-    public static <T extends Comparable<? super T>> void selectionSort(T[] arr) {
+    public static void selectionSort(Product[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             int maxIndex = i;
             for (int j = i + 1; j < arr.length; j++) {
@@ -105,12 +103,11 @@ public class BasicSorts {
      * Sorts the array in descending order using selection sort and the given
      * comparator {@code compare()}.
      * 
-     * @param <T> the type of the elements
      * @param arr the array to sort, it is rearranged in place
      * @param comp the comparator that defines the ordering of the elements
      */
 
-    public static <T> void selectionSort(T[] arr, Comparator<? super T> comp) {
+    public static void selectionSort(Product[] arr, Comparator<Product> comp) {
         for (int i = 0; i < arr.length - 1; i++) {
             int maxIndex = i;
             for (int j = i + 1; j < arr.length; j++) {
@@ -128,13 +125,12 @@ public class BasicSorts {
      * Sorts the array in descending order using insertion sort and the natural
      * ordering of the elements {@code compareTo()}.
      * 
-     * @param <T> the type of the elements, it must implement {@code Comparable}
      * @param arr the array to sort, it is rearranged in place
      */
 
-    public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
+    public static void insertionSort(Product[] arr) {
         for (int i = 1; i < arr.length; i++) {
-            T key = arr[i];
+            Product key = arr[i];
             int j = i - 1;
             while (j >= 0 && arr[j].compareTo(key) < 0) {
                 arr[j + 1] = arr[j];
@@ -148,14 +144,13 @@ public class BasicSorts {
      * Sorts the array in descending order using insertion sort and the given
      * comparator {@code compare()}.
      * 
-     * @param <T> the type of the elements
      * @param arr the array to sort, it is rearranged in place
      * @param comp the comparator that defines the ordering of the elements
      */
 
-    public static <T> void insertionSort(T[] arr, Comparator<? super T> comp) {
+    public static void insertionSort(Product[] arr, Comparator<Product> comp) {
         for (int i = 1; i < arr.length; i++) {
-            T key = arr[i];
+            Product key = arr[i];
             int j = i - 1;
             while (j >= 0 && comp.compare(arr[j], key) < 0) {
                 arr[j + 1] = arr[j];
@@ -166,14 +161,14 @@ public class BasicSorts {
     }
 
     /**
-     *Swaps the elements at two positions in an array. 
+     * Swaps the elements at two positions in an array. 
      * @param arr the array containing the elements
      * @param a the index of the first element
      * @param b the index of the second element
      */
 
-    private static void swap(Object[] arr, int a, int b) {
-        Object temp = arr[a];
+    private static void swap(Product[] arr, int a, int b) {
+        Product temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
     }

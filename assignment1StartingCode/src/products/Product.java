@@ -37,4 +37,13 @@ package products;
 	                this.calcRealDiff(),
 	                other.calcRealDiff());
 	    }
+	    
+	    @Override
+	    public String toString()
+	    {
+	        return getClass().getSimpleName()
+	                + " | Original Price: " + originalPrice
+	                + " | Updated Price: " + updatedPrice
+	                + " | Difference: " + calcRealDiff();
+	    }
 	}

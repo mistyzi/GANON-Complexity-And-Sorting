@@ -5,6 +5,16 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import products.*; 
 
+/**
+ * Loads products from a text data file.
+ * <p>
+ * The first line of the file holds the number of products. Each following line
+ * describes one product as three whitespace-separated values:
+ * {@code <type> <originalPrice> <updatedPrice>}, for example
+ * {@code jeans 49.99 39.99}. Blank lines are skipped.
+ * </p>
+ */
+
 public class ProductLoader {
 
     public static Product[] loadProducts(String filePath) throws FileNotFoundException, IllegalArgumentException {

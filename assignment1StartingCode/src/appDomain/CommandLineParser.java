@@ -1,5 +1,15 @@
 package appDomain;
 
+/**
+ * Parses and validates the command line arguments for the application.
+ * <p>
+ * Three arguments are required, in any order: {@code -f<file_name>},
+ * {@code -t<o|u|d>} and {@code -s<b|s|i|m|q|z>}. Argument letters are
+ * case-insensitive, and a leading en dash (as found in the assignment samples)
+ * is treated like a normal hyphen.
+ * </p>
+ */
+
 public class CommandLineParser {
 
     public static AppConfig parseArgs(String[] args) throws IllegalArgumentException {

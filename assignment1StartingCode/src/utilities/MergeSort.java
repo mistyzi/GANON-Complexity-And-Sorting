@@ -6,16 +6,31 @@ import products.Product;
 /**
  * Merge sort that arranges products from LARGEST to SMALLEST.
  * No timing or printing happens in here - benchmarking is done by the caller.
+ * <p>
+ * Time complexity: O(n log n) in every case. Space complexity: O(n) for the
+ * temporary array. The sort is stable.
+ * </p>
  */
 public class MergeSort
 {
-	/** Sort using the natural ordering (Product.compareTo, i.e. calcRealDiff). */
+	/**
+	 * Sorts the array in descending order using the natural ordering
+	 * ({@link Product#compareTo(Product)}, i.e. the calculated difference).
+	 *
+	 * @param arr the array to sort, it is rearranged in place
+	 */
 	public static void sort(Product[] arr)
 	{
 		sort(arr, (a, b) -> a.compareTo(b));
 	}
 
-	/** Sort using the supplied comparator. */
+	/**
+	 * Sorts the array in descending order using the supplied comparator.
+	 * Does nothing if the array is {@code null} or has fewer than two elements.
+	 *
+	 * @param arr the array to sort, it is rearranged in place
+	 * @param comp the comparator that defines the ordering of the elements
+	 */
 	public static void sort(Product[] arr, Comparator<Product> comp)
 	{
 		if (arr == null || arr.length < 2)
@@ -26,7 +41,15 @@ public class MergeSort
 		mergeSort(arr, temp, 0, arr.length - 1, comp);
 	}
 
-	// Recursively split arr[lo..hi], sort each half, then merge the halves
+	/**
+	 * Recursively splits arr[lo..hi] in half, sorts each half, then merges them.
+	 *
+	 * @param arr the array being sorted
+	 * @param temp scratch array of the same length, used while merging
+	 * @param lo the first index of the range
+	 * @param hi the last index of the range
+	 * @param comp the comparator that defines the ordering of the elements
+	 */
 	private static void mergeSort(Product[] arr, Product[] temp, int lo, int hi, Comparator<Product> comp)
 	{
 		if (lo >= hi)
@@ -39,7 +62,18 @@ public class MergeSort
 		merge(arr, temp, lo, mid, hi, comp);
 	}
 
-	// Merge the two sorted (descending) runs arr[lo..mid] and arr[mid+1..hi]
+	/**
+	 * Merges the two sorted (descending) runs arr[lo..mid] and arr[mid+1..hi]
+	 * into one sorted run. Equal elements keep their original order, which
+	 * keeps the sort stable.
+	 *
+	 * @param arr the array being sorted
+	 * @param temp scratch array of the same length, used while merging
+	 * @param lo the first index of the left run
+	 * @param mid the last index of the left run
+	 * @param hi the last index of the right run
+	 * @param comp the comparator that defines the ordering of the elements
+	 */
 	private static void merge(Product[] arr, Product[] temp, int lo, int mid, int hi, Comparator<Product> comp)
 	{
 		for (int k = lo; k <= hi; k++)

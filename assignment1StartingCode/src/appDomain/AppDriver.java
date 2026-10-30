@@ -110,12 +110,18 @@ public class AppDriver
             System.out.println("Algorithm: " + algName);
             System.out.println("Time: " + elapsedMs + " ms");
 
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            System.out.println("Correct Format: java -jar Sort.jar -f<file_name> -t<compare_type> -s<sort_alg>");
+        } catch (java.io.FileNotFoundException e) {
+            System.err.println("File Error: " + e.getMessage());
+            System.out.println("Please check the file path provided via the -f argument.");
+        } catch (IllegalArgumentException e) {
+            System.err.println("Input Error: " + e.getMessage());
+            System.out.println("\nCorrect Format: java -jar Sort.jar -f<file_name> -t<compare_type> -s<sort_alg>");
             System.out.println("  -t : o (original price), u (updated price), d (calculated difference)");
             System.out.println("  -s : b (bubble), s (selection), i (insertion), m (merge), q (quick), z (heap)");
+        } catch (Exception e) {
+            System.err.println("An unexpected system error occurred: " + e.getMessage());
         }
+
 	}
 	 /**
      * Prints results according to assignment requirements.

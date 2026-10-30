@@ -50,7 +50,7 @@ public class AppDriver
                 default:
                     throw new IllegalArgumentException("Invalid compare type. Must be o, u, or d.");
             }
-
+            
             // sort + benchmark (only the sort call itself is timed)
             char alg = Character.toLowerCase(config.getSortAlgorithm());
             String algName;
@@ -63,19 +63,19 @@ public class AppDriver
                 case 'b':
                     algName = "Bubble Sort";
                     start = System.nanoTime();
-                    if (comp == null) BubbleSort.sort(inventory); else BubbleSort.sort(inventory, comp);
+                    if (comp == null) BubbleSort.bubbleSort(inventory); else BubbleSort.bubbleSort(inventory, comp);
                     end = System.nanoTime();
                     break;
                 case 's':
                     algName = "Selection Sort";
                     start = System.nanoTime();
-                    if (comp == null) SelectionSort.sort(inventory); else SelectionSort.sort(inventory, comp);
+                    if (comp == null) SelectionSort.selectionSort(inventory); else SelectionSort.selectionSort(inventory, comp);
                     end = System.nanoTime();
                     break;
                 case 'i':
                     algName = "Insertion Sort";
                     start = System.nanoTime();
-                    if (comp == null) InsertionSort.sort(inventory); else InsertionSort.sort(inventory, comp);
+                    if (comp == null) InsertionSort.insertionSort(inventory); else InsertionSort.insertionSort(inventory, comp);
                     end = System.nanoTime();
                     break;
                 case 'm':
@@ -99,6 +99,16 @@ public class AppDriver
                 default:
                     throw new IllegalArgumentException("Invalid sort algorithm. Must be b, s, i, m, q or z.");
             }
+            
+            long elapsedTime = end - start;
+            double elapsedMs = elapsedTime / 1_000_000.0;
+          
+            System.out.println("\nSorted Results:");
+            printResults(inventory);
+
+            System.out.println();
+            System.out.println("Algorithm: " + algName);
+            System.out.println("Time: " + elapsedMs + " ms");
 
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
@@ -107,5 +117,45 @@ public class AppDriver
             System.out.println("  -s : b (bubble), s (selection), i (insertion), m (merge), q (quick), z (heap)");
         }
 	}
+	 /**
+     * Prints results according to assignment requirements.
+     *
+     * @param inventory sorted product array
+     */
+    private static void printResults(Product[] inventory)
+    {
+        int size = inventory.length;
 
+        if (size <= 10)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                System.out.println((i + 1) + ". " + inventory[i]);
+            }
+        }
+        else if (size <= 1000)
+        {
+            System.out.println("First: " + inventory[0]);
+
+            for (int i = 100; i < size - 1; i += 100)
+            {
+                System.out.println(i + ": " + inventory[i]);
+            }
+
+            System.out.println("Last: "
+                    + inventory[size - 1]);
+        }
+        else
+        {
+            System.out.println("First: " + inventory[0]);
+
+            for (int i = 1000; i < size - 1; i += 1000)
+            {
+                System.out.println(i + ": " + inventory[i]);
+            }
+
+            System.out.println("Last: "
+                    + inventory[size - 1]);
+        }
+    }
 }
